@@ -1,2 +1,57 @@
 # git-note
 git学习笔记
+
+安装教程:[文章地址](https://blog.csdn.net/qq_45281589/article/details/134650456)
+
+### git配置
+
+系统配置:git config -l:查看git的配置
+
+用户配置:git config --global --list
+
+### git基本理论
+
+>工作区域
+四个工作区
+1. Working Directory 工作目录
+2. Stage(index) 暂存区
+3. Repository 本地仓库 HEAD 指向主分支
+4. Remote Directory 远端仓库
+
+从上到下命令  *git add -> git commit ->git push*  
+反过来 *git checkout <- git reset <- git pull*
+
+git管理的文件存在三种状态:modified(已修改),staged(已暂存),committed(已提交)  
+
+
+### 仓库创建
+
+#### 创建本地仓库
+git init  
+语法:`git init [目录]`  
+作用:如果不加目录参数就会直接将当前目录下初始成一个仓库,创建.git文件,加了之后就会在特定目录下创建
+
+同步远端仓库
+1. 远端仓库例如github,构建一个新的远端仓库,注意仓库中不需要存在任何文件,防止与本地文件存在冲突  
+2. 使用`git remote add`命令,将远端仓库的url命名为`origin`(约定名称)
+3. 添加完毕之后通过`git remote -v`来验证是否添加成功
+4. 之后通过`git push`命令同步仓库文件  
+   本地仓库分支会影响这个提交命令:`git push -u origin [本地分支:master/main]`  
+   `-u`是为了设置本地分支跟踪远程的同名分支
+
+#### 拉取远端仓库
+
+git clone  
+语法:`git clone [远程仓库地址URL]`  
+作用:将远端仓库拉取到本地,直接在指令工作目录中创建新的仓库
+
+### 基本操作
+
+基础的工作流程:
+1. `git pull`拉取最新的代码
+2. 工作完毕之后使用`git status`查看暂存区有哪些文件发生了修改,新增
+3. 使用`git add`添加文件到本次想要commit的内容中
+4. `git commit`直接提交,不过一般会带上`-m [提交信息]`,提交到本地仓库
+5. 确认完毕之后`git push`到远程仓库
+
+    
