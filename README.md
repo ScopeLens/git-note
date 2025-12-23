@@ -17,6 +17,7 @@ git学习笔记
         - [版本回滚:安全回滚:保留历史](#版本回滚安全回滚保留历史)
         - [本地文件回滚](#本地文件回滚)
           - [移出版本控制](#移出版本控制)
+      - [设置别名](#设置别名)
     - [分支管理](#分支管理)
       - [创建与合并分支](#创建与合并分支)
         - [创建分支](#创建分支)
@@ -77,6 +78,14 @@ git clone
 作用:将远端仓库拉取到本地,直接在指令工作目录中创建新的仓库
 
 ### 基本操作
+
+查看git树  
+git log --graph --oneline --all --decorate  
+参数:  
+- `--graph`:这是核心参数,会在左侧使用ASCII字符画出分支演进符  
+- `--oneline`:将每个提交压缩成一行,只显示哈希值和提交信息
+- `--all`:显示所有分支
+- `--decorate`:标记出HEAD,分支名,标签(tag)等位置
 
 #### 基础的工作流程
 1. `git pull`拉取最新的代码
@@ -149,6 +158,23 @@ git rm
 作用:删除文件,或者放弃追踪文件  
 选项:  
 `--cached`:将文件移出版本控制,但是保留本地文件,如果不加这个选项实际就是执行了`rm`+`git add`
+
+#### 设置别名
+
+git中可以设置别名,让你通过很短的词语代替冗长的命令
+
+1. 使用命令行设置  
+   `git config --global alias.[别名] "原始命令"`  
+   例如:`git config --global alias.tree "log --graph --oneline --all --decorate"`  
+   配置一个git tree命令查看git树
+2. 通过配置文件修改
+   1. 打开配置文件:`git config --global --edit`
+   2. 找到或者添加`[alias]`部分
+   3. 按照对应的格式添加
+
+删除别名:`git config --global --unset alias.tree`
+
+**如果别名需要调用外部的 Shell 命令（非 Git 原生指令），需要在命令前加一个感叹号 !。 例如：git config --global alias.ui "!gitk"**
 
 ### 分支管理
 
